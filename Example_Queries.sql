@@ -1,5 +1,5 @@
 -- Summary of totals
-SELECT IFNULL(Letter, 'Total') as Letter, COUNT(*) as Count
+SELECT IFNULL(Letter, 'Total') as Letter, COUNT(*) as "Total Entries"
 FROM (
     SELECT UPPER(LEFT(entry_name, 1)) as Letter
     FROM entries
@@ -18,22 +18,35 @@ SELECT
 -- List all definitions for a specific entry
 SELECT d.* FROM definitions d
 JOIN entries e ON d.entry_id = e.entry_id
-WHERE e.entry_name = 'some_entry_name';
+WHERE e.entry_name = 'yapo';
 
 
 -- Entries with most contributors
-SELECT e.entry_name, COUNT(*) as num_definitions
+SELECT e.entry_name as Entry, COUNT(*) as "Number of Definitions"
 FROM definitions d
 JOIN entries e on d.entry_id = e.entry_id
 GROUP BY e.entry_id
-ORDER BY num_definitions DESC
-LIMIT 10;
+ORDER BY COUNT(*) DESC
+LIMIT 20;
 
 
 -- Most popular definitions
 SELECT * FROM definitions
 ORDER BY votes DESC
 LIMIT 50;
+
+
+-- Top contributors
+SELECT u.username, COUNT(*) as num_contributions
+FROM definitions d
+JOIN users u on d.user_id = u.user_id
+GROUP BY u.user_id
+ORDER BY num_contributions DESC
+LIMIT 50;
+
+
+-- Average number of votes per definition
+SELECT ROUND(AVG(votes),2) as average_votes FROM definitions;
 
 
 -- Most popular entries
@@ -67,18 +80,4 @@ SELECT
 FROM RankedEntries r
 LEFT JOIN TopDefinitions t ON r.entry_name = t.entry_name
 ORDER BY r.total_votes DESC;
-
-
--- Top contributors
-SELECT u.username, COUNT(*) as num_contributions
-FROM definitions d
-JOIN users u on d.user_id = u.user_id
-GROUP BY u.user_id
-ORDER BY num_contributions DESC
-LIMIT 10;
-
-
--- Average number of votes per definition
-SELECT AVG(votes) as average_votes FROM definitions;
-
 
