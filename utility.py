@@ -14,13 +14,13 @@ def parse_upload_desc(upload_desc):
     votes = int(match.group(4))
 
     # Convert time_quantity to days
-    if time_unit == 'year' or 'years':
+    if time_unit == 'year' or time_unit == 'years':
         time_in_days = time_quantity * 365
-    elif time_unit == 'month' or 'months':
+    elif time_unit == 'month' or time_unit == 'months':
         time_in_days = time_quantity * 30
-    elif time_unit == 'week' or 'weeks':
+    elif time_unit == 'week' or time_unit == 'weeks':
         time_in_days = time_quantity * 7
-    elif time_unit == 'day' or 'days':
+    elif time_unit == 'day' or time_unit == 'days':
         time_in_days = time_quantity
     else:
         print(user, time_quantity, time_unit, votes, 'failed:', upload_desc)
