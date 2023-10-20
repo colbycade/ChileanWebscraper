@@ -14,17 +14,12 @@ jobs:
 
     steps:
     - name: Checkout Scra
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: '3.x'
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2  # Use setup-node action to set up Node.js
-      with:
-        node-version: '16'  # Specify Node.js version 16
 
     - name: Install dependencies
       run: |
