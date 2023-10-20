@@ -1,4 +1,7 @@
+# Utility functions
+
 import re
+
 def parse_upload_desc(upload_desc):
     match = re.search(r"Enviado por (.+?) (\d+) (\w+) ago\. votos (-?\d+)", upload_desc)
     if not match:

@@ -1,3 +1,5 @@
+# Function to update database tables
+
 import mysql.connector
 def update_database(entry_name, definition_data):
     conn = mysql.connector.connect(user='root', password='vivachile',
