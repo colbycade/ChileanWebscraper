@@ -23,7 +23,7 @@ CREATE TABLE definitions (
     definition_text TEXT NOT NULL,
     example_text TEXT,
     synonyms TEXT,
-    display_time VARCHAR(50),
+    time_since_upload VARCHAR(50),
     time_in_days INT,
     votes INT,
     entry_id INT NOT NULL,
