@@ -32,7 +32,7 @@ LIMIT 20;
 
 -- Oldest contributions
 SELECT e.entry_name, d.definition_text as "Definition", d.example_text as Examples, 
-d.synonyms as Synonyms, d.votes as Votes, d.display_time as "Time Since Upload", u.username as Username
+d.synonyms as Synonyms, d.votes as Votes, d.time_since_upload as "Time Since Upload", u.username as Username
 FROM definitions d
 JOIN entries e ON d.entry_id = e.entry_id
 JOIN users u ON d.user_id = u.user_id

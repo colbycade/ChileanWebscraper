@@ -62,7 +62,7 @@ def scrape_page(letter):
                     elif synonym_btns:
                         synonyms.extend(btn.text for btn in synonym_btns)
                     elif upload_desc:  # Parse upload into upload time, username, and # of votes
-                        username, display_time, time_in_days, votes = parse_upload_desc(upload_desc.text)
+                        username, time_since_upload, time_in_days, votes = parse_upload_desc(upload_desc.text)
                     # If none of the above, treat it as definition text
                     else:
                         definition_text += p.text.strip()
@@ -71,7 +71,7 @@ def scrape_page(letter):
                     'example_text': example_text,
                     'synonyms': synonyms,
                     'username': username,
-                    'display_time': display_time,
+                    'time_since_upload': time_since_upload,
                     'time_in_days': time_in_days,
                     'votes': votes
                 }

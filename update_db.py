@@ -2,8 +2,12 @@
 
 import mysql.connector
 def update_database(entry_name, definition_data):
-    conn = mysql.connector.connect(user='root', password='vivachile',
-                                   host='localhost', database='ScrapeChile')
+    conn = mysql.connector.connect(
+        user='root',
+        password='vivachile',
+        host='localhost',
+        database='ScrapeChile')
+
     cursor = conn.cursor()
 
     # Update "users" table
@@ -21,7 +25,7 @@ def update_database(entry_name, definition_data):
     # Update "definitions" table
     cursor.execute("""
     INSERT INTO definitions (definition_text, example_text, 
-    synonyms, display_time, time_in_days, votes, entry_id, user_id)
+    synonyms, time_since_upload, time_in_days, votes, entry_id, user_id)
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
     """, (
           definition_data['definition_text'],

@@ -8,7 +8,7 @@ def parse_upload_desc(upload_desc):
         print('failed:', upload_desc)
         return '1','1',1
     user = match.group(1).strip()
-    display_time = match.group(2) + ' ' + match.group(3)
+    time_since_upload = match.group(2) + ' ' + match.group(3)
     time_quantity = int(match.group(2))
     time_unit = match.group(3)
     votes = int(match.group(4))
@@ -25,7 +25,7 @@ def parse_upload_desc(upload_desc):
     else:
         print(user, time_quantity, time_unit, votes, 'failed:', upload_desc)
         time_in_days = None  # This should not happen with the given pattern
-    return user, display_time, time_in_days, votes
+    return user, time_since_upload, time_in_days, votes
 
 def print_def_data(entry_name:str, definition_data:dict):
     buffer = '\n                     '
@@ -41,5 +41,5 @@ def print_def_data(entry_name:str, definition_data:dict):
             "synonyms"] else "None"
         print(f'  Synonyms:        {synonyms_str}')
         print(f'  User:            {definition_data["username"]}')
-        print(f'  Uploaded:        {definition_data["display_time"]} ago.')
+        print(f'  Uploaded:        {definition_data["time_since_upload"]} ago.')
         print(f'  # of Votes:      {definition_data["votes"]}')
