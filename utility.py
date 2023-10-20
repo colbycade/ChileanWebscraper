@@ -4,8 +4,8 @@ def parse_upload_desc(upload_desc):
     if not match:
         print('failed:', upload_desc)
         return '1','1',1
-    user = match.group(1)
-    time = match.group(2) + ' ' + match.group(3)
+    user = match.group(1).strip()
+    display_time = match.group(2) + ' ' + match.group(3)
     time_quantity = int(match.group(2))
     time_unit = match.group(3)
     votes = int(match.group(4))
@@ -22,4 +22,4 @@ def parse_upload_desc(upload_desc):
     else:
         print(user, time_quantity, time_unit, votes, 'failed:', upload_desc)
         time_in_days = None  # This should not happen with the given pattern
-    return user, time, time_in_days, votes
+    return user, display_time, time_in_days, votes
