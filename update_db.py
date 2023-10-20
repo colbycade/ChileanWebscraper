@@ -31,7 +31,7 @@ def update_database(entry_name, definition_data):
           definition_data['definition_text'],
           definition_data['example_text'],
           ', '.join(definition_data['synonyms']),
-          definition_data['display_time'],
+          definition_data['time_since_upload'],
           definition_data['time_in_days'],
           definition_data['votes'],
           entry_id,
