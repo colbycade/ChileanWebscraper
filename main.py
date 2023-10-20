@@ -10,8 +10,8 @@ from utility import print_def_data
 ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 
 if __name__ == '__main__':
-    successful = 0  # To keep track of successful letters
-    max_retries = 3  # Maximum number of retries for each letter
+    successful = 0  # To keep track of pages succesfully completed
+    max_retries = 3  # Maximum number of retries for each page
     retry_delay = 5  # Delay in seconds before retrying
 
     while successful < len(ALPHABET):
