@@ -17,13 +17,15 @@ I ran one locally, but you should specify your hostname as well a username and p
 Under `resources` there is a file called `DBsetup.sql` that you can use to set up the database and tables.
 
 After the server is running, make sure to `pip install` the packages listed in the `requirements.txt` file under `resources`. 
-These are used to communicate with the webpage, parse the html, and add progress bars to the terminal.
+These are used to communicate with the webpage and database, parse the html, and add progress bars to the terminal.
 
 You should now be able to run the `main.py` script to populate the database. 
 Uncomment the `print_def_data(entry_name, definition_data)` function on line 25 to see a printout of the entries. 
 The website organizes entries by letter, so you can change the `ALPHABET` string to only certain letters if you don't want to go through every page in one go (it takes 2-3 minutes to go through all of them).
 
-I also added a GitHub workflow `weekly_update.yml` to update the database automatically every week. You can disable it by removing the `schedule:` lines, renaming the file to include special characters/spaces, or by simply deleting the file.
+I also created an online Oracle database so I could learn how to use GitHub workflows to automatically update the database.
+The workflow `weekly_update.yml` updates the database automatically every week. 
+You can disable it by removing the `schedule:` lines, renaming the file to include special characters/spaces, or by simply deleting the file.
 
 ## Uses
 Like I said, this isn't the most useful project, but it's fun to look through all the words.
