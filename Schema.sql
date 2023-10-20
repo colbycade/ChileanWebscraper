@@ -1,4 +1,5 @@
-CREATE DATABASE IF NOT EXISTS ScrapeChile;
+DROP DATABASE ScrapeChile;
+CREATE DATABASE ScrapeChile;
 USE ScrapeChile;
 
 -- Entries Table
@@ -25,8 +26,8 @@ CREATE TABLE definitions (
     display_time VARCHAR(50),
     time_in_days INT,
     votes INT,
-    entry_id INT,
-    user_id INT,
+    entry_id INT NOT NULL,
+    user_id INT NOT NULL,
     FOREIGN KEY (entry_id) REFERENCES entries(entry_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
