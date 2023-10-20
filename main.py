@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from tqdm import tqdm
 import re
+from Utility import *
 
 BASE_URL = 'https://diccionariochileno.cl/terms/'
 ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
@@ -11,7 +12,8 @@ def scrape_diccionariochileno():
     all_entries = {}
     session = requests.Session()
 
-    for letter in ALPHABET:
+    # for letter in ALPHABET:
+    for letter in 'x':
         url = f'{BASE_URL}{letter}'
         response = session.get(url)
         if response.status_code != 200:
@@ -59,8 +61,8 @@ def scrape_diccionariochileno():
                             example_text = examples.text.strip()
                         elif synonym_btns:
                             synonyms.update(btn.text for btn in synonym_btns)
-                        elif upload_desc:  # Parse number of votes
-                            votes = int(re.search(r'votos\s+(-?\d+)', upload_desc.text).group(1))
+                        elif upload_desc:  # Parse upload into upload_time, user, and # of votes
+                            user, time, time_in_days, votes = parse_upload_desc(upload_desc.text)
                         # If none of the above, treat it as definition text
                         else:
                             definition_text += p.text.strip()
@@ -68,6 +70,9 @@ def scrape_diccionariochileno():
                         'definition_text': definition_text,
                         'example_text': example_text,
                         'synonyms': list(synonyms),
+                        'user': user,
+                        'time': time,
+                        'time_in_days': time_in_days,
                         'votes': votes
                     }
                     definitions.append(definition_data)
@@ -82,6 +87,7 @@ if __name__ == '__main__':
     # Print:
     buffer = '\n                     '
     for entry_name, definitions in entries.items():
+        print()
         print(f'Entry: {entry_name}')
         for i, definition_data in enumerate(definitions, start=1):
             print(f'Definition {i}:')
@@ -89,6 +95,9 @@ if __name__ == '__main__':
             print(f'  Definition Text: [{buffer}{indented_definition}{buffer[:-2]}]')
             indented_examples = buffer.join(definition_data["example_text"].split('\n'))
             print(f'  Example Text:    [{buffer}{indented_examples}{buffer[:-2]}]')
-            print(f'  Synonyms:        {definition_data["synonyms"] or "None"}')
-            print(f'  # of Votes: {definition_data["votes"]}')
-            print()
+            synonyms_str = ", ".join([f'"{s}"' for s in definition_data["synonyms"]]) if definition_data["synonyms"] else "None"
+            print(f'  Synonyms:        {synonyms_str}')
+            print(f'  User:            {definition_data["user"]}')
+            print(f'  Uploaded:        {definition_data["time"]} ago.')
+            print(f'  # of Votes:      {definition_data["votes"]}')
+
