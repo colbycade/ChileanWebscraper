@@ -2,9 +2,10 @@
 # handles network errors
 
 import requests
+import time
 from update_db import update_database
 from webscraper import scrape_page
-import time
+from utility import print_def_data
 
 ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 
@@ -21,6 +22,7 @@ if __name__ == '__main__':
                 entries = scrape_page(letter)
                 for entry_name, definitions in entries.items():
                     for definition_data in definitions:
+                        # print_def_data(entry_name, definition_data) # uncomment to print
                         update_database(entry_name, definition_data)
                 successful += 1  # Increment the successful count only if no exception was raised
                 break  # Move to the next letter
@@ -34,19 +36,4 @@ if __name__ == '__main__':
                 retries += 1
                 print(f"Retrying {letter} in {retry_delay} seconds...")
                 time.sleep(retry_delay)
-        # # Print:
-        # buffer = '\n                     '
-        # for entry_name, definitions in entries.items():
-        #     print()
-        #     print(f'Entry: {entry_name}')
-        #     for i, definition_data in enumerate(definitions, start=1):
-        #         print(f'Definition {i}:')
-        #         indented_definition = buffer.join(definition_data["definition_text"].split('\n'))
-        #         print(f'  Definition Text: [{buffer}{indented_definition}{buffer[:-2]}]')
-        #         indented_examples = buffer.join(definition_data["example_text"].split('\n'))
-        #         print(f'  Example Text:    [{buffer}{indented_examples}{buffer[:-2]}]')
-        #         synonyms_str = ", ".join([f'"{s}"' for s in definition_data["synonyms"]]) if definition_data["synonyms"] else "None"
-        #         print(f'  Synonyms:        {synonyms_str}')
-        #         print(f'  User:            {definition_data["username"]}')
-        #         print(f'  Uploaded:        {definition_data["time"]} ago.')
-        #         print(f'  # of Votes:      {definition_data["votes"]}')
+
