@@ -3,13 +3,13 @@
 import oracledb
 from tqdm import tqdm
 
-def update_Oracle(entries):
+def update_oracle_db(entries):
     conn = oracledb.connect(
         user="WORKFLOW",
         password="VivaChile123",
         dsn="scrapechile_low",
-        config_dir="Config",
-        wallet_location="Config",
+        config_dir="Oracle_config",
+        wallet_location="Oracle_config",
         wallet_password="VivaChile123")
 
     cursor = conn.cursor()

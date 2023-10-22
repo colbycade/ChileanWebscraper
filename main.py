@@ -3,7 +3,7 @@
 
 import requests
 import time
-from update_db import update_database
+from update_mysql import update_mysql_db
 from webscraper import scrape_page
 from utility import print_def_data
 
@@ -23,7 +23,7 @@ if __name__ == '__main__':
                 for entry_name, definitions in entries.items():
                     for definition_data in definitions:
                         # print_def_data(entry_name, definition_data) # uncomment to print
-                        update_database(entry_name, definition_data)
+                        update_mysql_db(entry_name, definition_data)
                 successful += 1  # Increment the successful count only if no exception was raised
                 break  # Move to the next letter
             except requests.RequestException as e:  # Catching network errors
@@ -36,4 +36,3 @@ if __name__ == '__main__':
                 retries += 1
                 print(f"Retrying {letter} in {retry_delay} seconds...")
                 time.sleep(retry_delay)
-

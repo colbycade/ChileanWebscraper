@@ -3,9 +3,9 @@
 import requests
 import time
 from webscraper import scrape_page
-from update_Oracle_db import update_Oracle
+from update_Oracle import update_oracle_db
 
-ALPHABET = 'xabcdefghijklmnopqrstuvwxyz'
+ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 
 if __name__ == '__main__':
     successful = 0  # To keep track of pages succesfully completed
@@ -18,7 +18,7 @@ if __name__ == '__main__':
         while retries < max_retries:
             try:
                 entries = scrape_page(letter)
-                update_Oracle(entries)
+                update_oracle_db(entries)
                 print('Upload complete')
                 successful += 1  # Increment the successful count only if no exception was raised
                 break  # Move to the next letter
