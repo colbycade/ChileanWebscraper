@@ -32,4 +32,5 @@ jobs:
         pip install -r resources/requirements.txt # Install required packages
 
     - name: Run main_Oracle.py
+      working-directory: /ScrapeChile
       run: python Oracle/main_Oracle.py
