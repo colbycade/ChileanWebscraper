@@ -3,9 +3,7 @@
 
 import requests
 import time
-from tqdm import tqdm
 from ScrapeChile.webscraper import scrape_page
-from ScrapeChile.utility import print_def_data
 from update_Oracle_db import update_Oracle
 
 ALPHABET = 'xabcdefghijklmnopqrstuvwxyz'
@@ -22,10 +20,7 @@ if __name__ == '__main__':
         while retries < max_retries:
             try:
                 entries = scrape_page(letter)
-                for entry_name, definitions in tqdm(entries.items(), desc="Updating database...", unit="updates", leave=False):
-                    for definition_data in definitions:
-                        # print_def_data(entry_name, definition_data) # uncomment to print
-                        update_Oracle(entry_name, definition_data)
+                update_Oracle(entries)
                 print('Upload complete')
                 successful += 1  # Increment the successful count only if no exception was raised
                 break  # Move to the next letter
