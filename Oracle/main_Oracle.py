@@ -1,4 +1,4 @@
-# main driver code
+# main driver code for updating Oracle DB
 # handles network errors
 import requests
 import time
