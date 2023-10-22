@@ -31,5 +31,5 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r resources/requirements.txt # Install required packages
 
-    - name: Run main.py
+    - name: Run main_Oracle.py
       run: python Oracle/main_Oracle.py
