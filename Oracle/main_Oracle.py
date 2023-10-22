@@ -6,7 +6,6 @@ from webscraper import scrape_page
 from update_Oracle_db import update_Oracle
 
 ALPHABET = 'xabcdefghijklmnopqrstuvwxyz'
-# ALPHABET = 'x'
 
 if __name__ == '__main__':
     successful = 0  # To keep track of pages succesfully completed
