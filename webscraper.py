@@ -5,7 +5,7 @@ import re
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from tqdm import tqdm
-from ScrapeChile.utility import parse_upload_desc
+from utility import parse_upload_desc
 
 BASE_URL = 'https://diccionariochileno.cl/terms/'
 

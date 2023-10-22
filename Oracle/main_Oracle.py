@@ -1,9 +1,8 @@
-# main driver code
+# main driver code for updating Oracle DB
 # handles network errors
-
 import requests
 import time
-from ScrapeChile.webscraper import scrape_page
+from webscraper import scrape_page
 from update_Oracle_db import update_Oracle
 
 ALPHABET = 'xabcdefghijklmnopqrstuvwxyz'
@@ -34,4 +33,3 @@ if __name__ == '__main__':
                 retries += 1
                 print(f"Retrying in {retry_delay} seconds...")
                 time.sleep(retry_delay)
-
