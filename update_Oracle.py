@@ -2,6 +2,8 @@
 
 import oracledb
 from tqdm import tqdm
+from utility import calculate_hash
+
 
 def update_oracle_db(entries):
     conn = oracledb.connect(
@@ -23,6 +25,7 @@ def update_oracle_db(entries):
             SELECT :username FROM dual
             WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = :username)
             """, {'username': username})
+
             cursor.execute("SELECT user_id FROM users WHERE username = :username", {'username': username})
             user_id = cursor.fetchone()[0]
 
@@ -32,19 +35,27 @@ def update_oracle_db(entries):
             SELECT :entry_name FROM dual
             WHERE NOT EXISTS (SELECT 1 FROM entries WHERE entry_name = :entry_name)
             """, {'entry_name': entry_name})
+
             cursor.execute("SELECT entry_id FROM entries WHERE entry_name = :entry_name", {'entry_name': entry_name})
             entry_id = cursor.fetchone()[0]
 
-            # Update "definitions" table
+            # Calculate unique has for defintion based on user, entry, and definition given (we technically lose
+            # information if the same user uploads the same definition twice but that's fine for our purposes)
+            definition_hash = calculate_hash(definition_data, entry_id, user_id)
+
+            # Update "definitions" table if new
             cursor.execute("""
-            INSERT INTO definitions 
-            (definition_text, example_text, synonyms, time_since_upload, time_in_days, votes, entry_id, user_id)
-            VALUES (:definition_text, :example_text, :synonyms, :display_time, :time_in_days, :votes, :entry_id, :user_id)
+            INSERT INTO definitions (definition_id, definition_text, example_text, 
+            synonyms, time_since_upload, time_in_days, votes, entry_id, user_id)
+            SELECT :definition_id, :definition_text, :example_text, :synonyms, 
+            :time_since_upload, :time_in_days, :votes, :entry_id, :user_id FROM dual
+            WHERE NOT EXISTS (SELECT 1 FROM definitions WHERE definition_id = :definition_id)
             """, {
+                'definition_id': definition_hash,
                 'definition_text': definition_data['definition_text'],
                 'example_text': definition_data['example_text'],
                 'synonyms': ', '.join(definition_data['synonyms']),
-                'display_time': definition_data['time_since_upload'],
+                'time_since_upload': definition_data['time_since_upload'],
                 'time_in_days': definition_data['time_in_days'],
                 'votes': definition_data['votes'],
                 'entry_id': entry_id,

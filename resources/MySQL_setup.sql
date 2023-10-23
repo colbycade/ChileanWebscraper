@@ -1,0 +1,35 @@
+DROP DATABASE SCRAPECHILE;
+CREATE DATABASE ScrapeChile;
+USE ScrapeChile;
+
+-- Entries Table
+DROP TABLE IF EXISTS entries;
+CREATE TABLE entries (
+    entry_id   INT PRIMARY KEY AUTO_INCREMENT,
+    entry_name VARCHAR(255) NOT NULL UNIQUE
+);
+
+-- Users Table
+DROP TABLE IF EXISTS USERS;
+CREATE TABLE USERS (
+    user_id  INT PRIMARY KEY AUTO_INCREMENT,
+    USERNAME VARCHAR(255) NOT NULL UNIQUE
+);
+
+-- Definitions Table
+DROP TABLE IF EXISTS DEFINITIONS;
+CREATE TABLE DEFINITIONS (
+    DEFINITION_ID     CHAR(64) PRIMARY KEY, -- hash column as primary key insures no duplicate definitions (at least not by the same user)
+    DEFINITION_TEXT   TEXT NOT NULL,
+    EXAMPLE_TEXT      TEXT,
+    SYNONYMS          TEXT,
+    TIME_SINCE_UPLOAD VARCHAR(50),
+    TIME_IN_DAYS      FLOAT,
+    VOTES             INT,
+    ENTRY_ID          INT NOT NULL,
+    USER_ID           INT NOT NULL,
+    FOREIGN KEY ( ENTRY_ID )
+        REFERENCES ENTRIES ( ENTRY_ID ),
+    FOREIGN KEY ( USER_ID )
+        REFERENCES USERS ( USER_ID )
+);

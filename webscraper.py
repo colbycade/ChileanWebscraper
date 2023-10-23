@@ -69,7 +69,7 @@ def scrape_page(letter):
                 definition_data = {
                     'definition_text': definition_text,
                     'example_text': example_text,
-                    'synonyms': synonyms,
+                    'synonyms': synonyms if synonyms else ["None"],
                     'username': username,
                     'time_since_upload': time_since_upload,
                     'time_in_days': time_in_days,

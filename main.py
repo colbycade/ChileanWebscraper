@@ -3,16 +3,21 @@
 
 import requests
 import time
-from update_mysql import update_mysql_db
+from update_MySQL import update_mysql_db
 from webscraper import scrape_page
 from utility import print_def_data
 
-ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
-
 if __name__ == '__main__':
+    # # If you want to print out entries instead of updating database, uncomment this and comment out the rest:
+    # for letter in ALPHABET:  # replace ALPHABET with specific page/letter if desired
+    #     entries = scrape_page(letter)
+    #     print_def_data(entries)
+
     successful = 0  # To keep track of pages succesfully completed
     max_retries = 3  # Maximum number of retries for each page
     retry_delay = 5  # Delay in seconds before retrying
+
+    ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 
     while successful < len(ALPHABET):
         letter = ALPHABET[successful]
@@ -20,10 +25,8 @@ if __name__ == '__main__':
         while retries < max_retries:
             try:
                 entries = scrape_page(letter)
-                for entry_name, definitions in entries.items():
-                    for definition_data in definitions:
-                        # print_def_data(entry_name, definition_data) # uncomment to print
-                        update_mysql_db(entry_name, definition_data)
+                update_mysql_db(entries)
+                print('Upload complete')
                 successful += 1  # Increment the successful count only if no exception was raised
                 break  # Move to the next letter
             except requests.RequestException as e:  # Catching network errors

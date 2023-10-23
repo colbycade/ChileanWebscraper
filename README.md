@@ -4,7 +4,7 @@
 I lived in Chile for a year and loved learning the language, especially the "chilenismos". 
 I used this website when I didn't know what something meant. 
 It's a crowdsourced collection of slang and their definitions similar to UrbanDictionary.
-This project isn't neccesarily that useful, but I thought it would be fun exercise to practice Python, data cleaning, SQL, and version control.
+This project isn't neccesarily that useful, but I thought it would be a fun exercise to practice Python, data cleaning, SQL, and version control.
 
 ## Description
 This is a basic webscraper that collects crowdsourced Chilean slang words/phrases and definitions from the website diccionariochileno.cl and imports into a local MySQL database for analysis.
@@ -26,6 +26,7 @@ The website organizes entries by letter, so you can change the `ALPHABET` string
 I also created an online Oracle database so I could learn how to use GitHub workflows to automatically update the database.
 The workflow `weekly_update.yml` updates the database automatically every week. 
 You can disable it by removing the `schedule:` lines, renaming the file to include special characters/spaces, or by simply deleting the file.
+The database can be accessed at [this link](https://g9ae7d5bae273bb-scrapechile.adb.us-phoenix-1.oraclecloudapps.com/ords/workflow/sign-in/?r=_sdw%2F%3Fnav%3Dworksheet)
 
 ## Uses
 Like I said, this isn't the most useful project, but it's fun to look through all the words.
@@ -34,4 +35,4 @@ You can also run queries on the database. I included some interesting/useful que
 ## Extra
 While in Chile, I wrote down every word or phrase that I didn't recognize or thought was interesting/useful, organized them by frequency and other categories, then collected them all into a spreadsheet for study/reference.
 It currently contains about 3,000 entries, and I have quite a few more that I haven't yet entered. 
-That spreadsheet can be accessed here if interested: https://docs.google.com/spreadsheets/d/1n-BV4boWKd38noRMt-ku7NNEx_l5XblBNe03zxAd6cs/edit?usp=sharing
+That spreadsheet can be accessed [here](https://docs.google.com/spreadsheets/d/1n-BV4boWKd38noRMt-ku7NNEx_l5XblBNe03zxAd6cs/edit?usp=sharing) if interested.
