@@ -3,14 +3,15 @@
 import requests
 import time
 from webscraper import scrape_page
-from update_Oracle import update_oracle_db
+# from update_Oracle import update_oracle_db
+from batchinsert import update_oracle_db
 
 if __name__ == '__main__':
     successful = 0  # To keep track of pages succesfully completed
     max_retries = 3  # Maximum number of retries for each page
     retry_delay = 5  # Delay in seconds before retrying
 
-    ALPHABET = 'babcdefghijklmnopqrstuvwxyz'
+    ALPHABET = 'xabcdefghijklmnopqrstuvwxyz'
 
     while successful < len(ALPHABET):
         letter = ALPHABET[successful]
