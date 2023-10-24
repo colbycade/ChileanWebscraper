@@ -3,14 +3,14 @@
 import requests
 import time
 from webscraper import scrape_page
-from update_Oracle import update_oracle_db
+from batchinsert import update_oracle_db
 
 if __name__ == '__main__':
     successful = 0  # To keep track of pages succesfully completed
     max_retries = 3  # Maximum number of retries for each page
     retry_delay = 5  # Delay in seconds before retrying
 
-    ALPHABET = 'babcdefghijklmnopqrstuvwxyz'
+    ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 
     while successful < len(ALPHABET):
         letter = ALPHABET[successful]
@@ -19,7 +19,7 @@ if __name__ == '__main__':
             try:
                 entries = scrape_page(letter)
                 update_oracle_db(entries)
-                print('Upload complete')
+                print(f'Upload of new data for letter "{letter}" complete')
                 successful += 1  # Increment the successful count only if no exception was raised
                 break  # Move to the next letter
             except requests.RequestException as e:  # Catching network errors
