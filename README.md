@@ -4,7 +4,7 @@
 I lived in Chile for a year and loved learning the language, especially the "chilenismos". 
 I used this website when I didn't know what something meant. 
 It's a crowdsourced collection of slang and their definitions similar to UrbanDictionary.
-This project isn't neccesarily that useful, but I thought it would be a fun exercise to practice Python, data cleaning, SQL, and version control.
+This project isn't neccesarily that useful, but I thought it would be a fun exercise to practice Python, data cleaning, data modeling, SQL, and version control.
 
 ## Description
 This is a basic webscraper that collects crowdsourced Chilean slang words/phrases and definitions from the website diccionariochileno.cl and imports into a local MySQL database for analysis.
