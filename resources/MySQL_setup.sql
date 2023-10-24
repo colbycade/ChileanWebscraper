@@ -5,16 +5,22 @@ USE ScrapeChile;
 -- Entries Table
 DROP TABLE IF EXISTS entries;
 CREATE TABLE entries (
-    entry_id   INT PRIMARY KEY AUTO_INCREMENT,
-    entry_name VARCHAR(255) NOT NULL UNIQUE
+    ENTRY_ID   INT PRIMARY KEY AUTO_INCREMENT,
+    ENTRY_NAME VARCHAR(255) NOT NULL UNIQUE
 );
 
 -- Users Table
 DROP TABLE IF EXISTS USERS;
 CREATE TABLE USERS (
-    user_id  INT PRIMARY KEY AUTO_INCREMENT,
+    USER_ID  INT PRIMARY KEY AUTO_INCREMENT,
     USERNAME VARCHAR(255) NOT NULL UNIQUE
 );
+
+-- Note the use of auto-incrementing ids as primary keys.
+-- This doesn't violate 3NF because entry_name and username are candidate keys.
+-- Numerical primary keys may speed up insertions and joins, however, they really aren't necessary here.
+-- I just wanted to experiment with the auto-incrementer and thought ids looked more "traditional".
+-- In the Oracle implementation I remove these ids to simplify batch inserts.
 
 -- Definitions Table
 DROP TABLE IF EXISTS DEFINITIONS;
