@@ -26,7 +26,7 @@ def update_mysql_db(entries):
             cursor.execute("SELECT entry_id FROM entries WHERE entry_name = %s", (entry_name,))
             entry_id = cursor.fetchone()[0]
 
-            # Calculate unique has for defintion based on user, entry, and definition given (we technically lose
+            # Calculate unique has for definition based on user, entry, and definition given (we technically lose
             # information if the same user uploads the same definition twice but that's fine for our purposes)
             definition_hash = calculate_hash(definition_data, entry_id, user_id)
 
