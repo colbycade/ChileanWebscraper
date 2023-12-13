@@ -26,7 +26,7 @@ The website organizes entries by letter, so you can change the `ALPHABET` string
 I also created an online Oracle database so I could learn how to use GitHub workflows to automatically update the database.
 The workflow `weekly_update.yml` updates the database automatically every week. 
 You can disable it by removing the `schedule:` lines, renaming the file to include special characters/spaces, or by simply deleting the file.
-The database can be accessed at [this link](https://g9ae7d5bae273bb-scrapechile.adb.us-phoenix-1.oraclecloudapps.com/ords/workflow/sign-in/?r=_sdw%2F%3Fnav%3Dworksheet)
+The database can be accessed at [this link](https://g9ae7d5bae273bb-scrapechile.adb.us-phoenix-1.oraclecloudapps.com/ords/workflow/sign-in/?r=_sdw%2F%3Fnav%3Dworksheet) with user: WORKFLOW and pass: vivachile123
 
 ## Uses
 Like I said, this isn't the most useful project, but it's fun to look through all the words.
