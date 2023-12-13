@@ -9,7 +9,6 @@ from utility import print_def_data
 
 if __name__ == '__main__':
     # # If you want to print out entries instead of updating database, uncomment this and comment out the rest:
-    # for letter in ALPHABET:  # replace ALPHABET with specific page/letter if desired
     #     entries = scrape_page(letter)
     #     print_def_data(entries)
 
@@ -17,6 +16,7 @@ if __name__ == '__main__':
     max_retries = 3  # Maximum number of retries for each page
     retry_delay = 5  # Delay in seconds before retrying
 
+    # for letter in ALPHABET:  # replace ALPHABET with specific page/letter if desired
     ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 
     while successful < len(ALPHABET):
