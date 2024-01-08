@@ -4,7 +4,7 @@ on:
   schedule: # delete to disable workflow
     # * is a wildcard that matches any value
     # 0 0 * * 0 means every Sunday at midnight
-    - cron: '0 0 * * 0'
+    # - cron: '0 0 * * 0'
   workflow_dispatch:  # enable manual runs
 
 
